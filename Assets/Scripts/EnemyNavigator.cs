@@ -1,31 +1,35 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyNavigator : MonoBehaviour
 {
-    public float wanderRadius; // how far the enemy can wander
-    public float playerDetectionRange = 5f;
-    public float stoppingDistance = 1f;
-    public LayerMask obstacleMask;
+    [SerializeField] float wanderRadius; // how far the enemy can wander
+    [SerializeField] float playerDetectionRange = 5f;
+    [SerializeField] float stoppingDistance = 1f;
+    [SerializeField] LayerMask obstacleMask;
 
     [Header("Idle Settings")]
     [Tooltip("How long the idle lasts")]
-    public float minIdleDuration = 1;
+    [SerializeField] float minIdleDuration = 1;
     [Tooltip("How long the idle lasts")]
-    public float maxIdleDuration = 3;
+    [SerializeField] float maxIdleDuration = 3;
 
     private Transform player;
     private NavMeshAgent agent;
     private Vector3 wanderTarget;
 
     float idleTimer = 0;
-
+    bool reachedPlayer = false;
     bool wandering = true;
     bool PlayerInReach =>
         DistanceToPlayer() <= playerDetectionRange;
     bool PlayerInView =>
         !Physics.Linecast(transform.position, player.position, obstacleMask);
-    
+
+    public UnityEvent OnReachedPlayer;
+    public UnityEvent PlayerOutOfRange;
+
     private void Awake()
     {
         wanderTarget = GetRandomPosition(wanderRadius);
@@ -36,13 +40,13 @@ public class EnemyNavigator : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInReach && PlayerInView)
+        if (PlayerInReach) // && PlayerInView)
         {
             MoveTowardsPlayer();
             return;
         }
 
-        if(wandering)
+        if (wandering)
         {
             Wander();
             return;
@@ -55,7 +59,6 @@ public class EnemyNavigator : MonoBehaviour
         }
     }
 
-   
     public Vector3 GetRandomPosition(float radius)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius;
@@ -88,6 +91,27 @@ public class EnemyNavigator : MonoBehaviour
 
     public void MoveTowardsPlayer()
     {
-        agent.destination = player.position;
+        if (agent.destination != player.position)
+        {
+            agent.destination = player.position;
+            if (reachedPlayer)
+            {
+                reachedPlayer = false;
+                PlayerOutOfRange?.Invoke();
+            }
+        }
+
+        // Check if we've reached the destination
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if ((!agent.hasPath || agent.velocity.sqrMagnitude == 0f))
+                {
+                    OnReachedPlayer?.Invoke();
+                    reachedPlayer = true;
+                }
+            }
+        }
     }
 }

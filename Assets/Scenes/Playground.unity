@@ -1533,9 +1533,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2851235288405029746, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: bulletSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905843, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_Name
       value: Basic Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: stoppingDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: playerDetectionRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905854, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_RootOrder
