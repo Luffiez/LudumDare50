@@ -13,9 +13,10 @@ public class Pistol : MonoBehaviour, IWeapon
 
     public void Shoot()
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
         {
-           IHurt damage= hit.collider.gameObject.GetComponent<IHurt>();
+            IHurt damage = hit.collider.gameObject.GetComponent<IHurt>();
+            Debug.Log("hit: " + hit.collider.gameObject.name);
             if (damage != null)
             {
                 damage.NormalDamage(normaldamage);

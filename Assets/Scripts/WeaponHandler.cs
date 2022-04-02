@@ -61,8 +61,8 @@ public class WeaponHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("shoot:" + input.shooting);
-            Debug.Log("holdShoot:" + holdShoot);
+            //Debug.Log("shoot:" + input.shooting);
+            //Debug.Log("holdShoot:" + holdShoot);
             if (input.shooting)
             {
                 activeWeapon.HoldShoot();
