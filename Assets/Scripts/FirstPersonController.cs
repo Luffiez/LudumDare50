@@ -94,8 +94,7 @@ namespace StarterAssets
 		}
 
 		private void Update()
-		{
-			Debug.Log(_input.holdjump);
+		{			
 			JumpAndGravity();
 			GroundedCheck();
 			Move();

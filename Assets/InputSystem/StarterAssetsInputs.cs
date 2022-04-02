@@ -93,7 +93,7 @@ namespace StarterAssets
 		}
 		public void OnReleaseShoot(InputAction.CallbackContext obj)
 		{
-			holdjump = false;
+			shooting = false;
 		}
 
 		public void OnSprint(InputValue value)

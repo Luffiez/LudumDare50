@@ -48,6 +48,7 @@ public class WeaponHandler : MonoBehaviour
 
     void Start()
     {
+        activeWeapon = WeaponObjects[weaponIndex].GetComponent<IWeapon>();
     }
 
     // Update is called once per frame
@@ -60,9 +61,10 @@ public class WeaponHandler : MonoBehaviour
         }
         else
         {
+            Debug.Log("shoot:" + input.shooting);
+            Debug.Log("holdShoot:" + holdShoot);
             if (input.shooting)
             {
-                holdShoot = true;
                 activeWeapon.HoldShoot();
                 if (!holdShoot)
                 {

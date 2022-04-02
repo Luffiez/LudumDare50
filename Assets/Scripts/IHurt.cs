@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHurt
 {
-    void NormalDamage();
+    void NormalDamage(int damage);
 }
