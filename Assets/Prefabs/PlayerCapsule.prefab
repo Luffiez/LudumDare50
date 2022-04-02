@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normaldamage: 1
-  HitPrefab: {fileID: 0}
+  HitPrefab: {fileID: 9086652730297972, guid: 606fd9e81c00e364fbc125c9ad7a7e0a, type: 3}
+  animator: {fileID: 0}
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +285,7 @@ MonoBehaviour:
   GroundedRadius: 0.5
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 9
   CinemachineCameraTarget: {fileID: 4135013735270702863}
   TopClamp: 89
   BottomClamp: -89
@@ -439,3 +440,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponObjects:
   - {fileID: 584733224550970502}
+  WeaponAnimators:
+  - {fileID: 0}

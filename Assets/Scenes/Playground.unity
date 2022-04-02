@@ -1753,18 +1753,14 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 630583218}
-    - target: {fileID: 2873784637969343768, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: HitPrefab
-      value: 
-      objectReference: {fileID: 9086652730297972, guid: 606fd9e81c00e364fbc125c9ad7a7e0a, type: 3}
-    - target: {fileID: 4764275891302939113, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: WeaponAnimators.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4764275891302939113, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: WeaponAnimators.Array.data[0]
       value: 
       objectReference: {fileID: 630583218}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: MoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule

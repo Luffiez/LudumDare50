@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour, IHurt
 
     private void Die()
     {
-        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        GameObject particles = Instantiate(deathParticles, transform.position + Vector3.up, Quaternion.identity);
         Destroy(particles, 2f);
 
         Destroy(gameObject);

@@ -34,6 +34,7 @@ public class WeaponHandler : MonoBehaviour
             if(weaponIndex >= WeaponObjects.Count)
             {
                 newWeaponIndex = 0;
+                weaponIndex--;
             }
         }
         else
@@ -42,6 +43,8 @@ public class WeaponHandler : MonoBehaviour
             if (weaponIndex < 0)
             {
                 newWeaponIndex = WeaponObjects.Count - 1;
+
+                weaponIndex++;
             }
         }
         WeaponObjects[weaponIndex].SetActive(false);
