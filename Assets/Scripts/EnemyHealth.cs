@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IHurt
 {
     [SerializeField] int maxHealth;
+    [SerializeField] GameObject deathParticles;
     int currentHealth;
 
     private void Start()
@@ -21,6 +22,9 @@ public class EnemyHealth : MonoBehaviour, IHurt
 
     private void Die()
     {
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 2f);
+
         Destroy(gameObject);
     }
 }

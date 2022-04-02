@@ -27,7 +27,7 @@ public class WeaponSway : MonoBehaviour
         }
         else
         {
-            currentZ = Mathf.Lerp(currentZ, 0, Time.deltaTime * swaySpeed * 2);
+            currentZ = Mathf.Lerp(currentZ, 0, Time.deltaTime * swaySpeed);
         }
 
         rect.rotation = Quaternion.Euler(0, 0, currentZ);
