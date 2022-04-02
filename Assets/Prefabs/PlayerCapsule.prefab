@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normaldamage: 1
+  HitPrefab: {fileID: 0}
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
