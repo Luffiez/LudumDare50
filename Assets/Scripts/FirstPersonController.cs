@@ -95,6 +95,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			Debug.Log(_input.holdjump);
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -180,8 +181,11 @@ namespace StarterAssets
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
-
-		private void JumpAndGravity()
+        private void FixedUpdate()
+        {
+			
+        }
+        private void JumpAndGravity()
 		{
 			if (Grounded)
 			{
@@ -226,6 +230,11 @@ namespace StarterAssets
 			if (_verticalVelocity < _terminalVelocity)
 			{
 				_verticalVelocity += Gravity * Time.deltaTime;
+			}
+
+			if (_verticalVelocity > 0 && !_input.holdjump)
+			{
+				_verticalVelocity = 0;
 			}
 		}
 

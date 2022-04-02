@@ -11,6 +11,9 @@ namespace StarterAssets
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
+		public bool holdjump;
+		private InputAction holdJumpAction;
+		PlayerInput input;
 		public bool sprint;
 
 		[Header("Movement Settings")]
@@ -21,6 +24,27 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 #endif
+
+		private void Awake()
+		{
+			input = GetComponent<PlayerInput>();
+			holdJumpAction = input.currentActionMap.FindAction("Jump");
+			holdJumpAction.started += OnHoldJumping;
+			holdJumpAction.canceled += OnReleaseJump;
+		}
+
+        private void OnDisable()
+        {
+			holdJumpAction.started -= OnHoldJumping;
+			holdJumpAction.canceled -= OnReleaseJump;
+		}
+
+		private void OnEnable()
+		{
+			holdJumpAction.started += OnHoldJumping;
+			holdJumpAction.canceled += OnReleaseJump;
+		}
+
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
@@ -39,6 +63,20 @@ namespace StarterAssets
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
+		}
+
+		public void OnHoldJump(InputValue value)
+		{
+		}
+
+		public void OnHoldJumping(InputAction.CallbackContext obj)
+		{
+			holdjump = true;
+		}
+
+		public void OnReleaseJump(InputAction.CallbackContext obj)
+		{
+			holdjump = false;
 		}
 
 		public void OnSprint(InputValue value)
