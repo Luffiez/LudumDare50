@@ -12,9 +12,12 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool holdjump;
+		public bool shooting;
 		private InputAction holdJumpAction;
+		private InputAction holdShootAction;
 		PlayerInput input;
 		public bool sprint;
+		public int newWeaponDirection =0;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -31,12 +34,17 @@ namespace StarterAssets
 			holdJumpAction = input.currentActionMap.FindAction("Jump");
 			holdJumpAction.started += OnHoldJumping;
 			holdJumpAction.canceled += OnReleaseJump;
+			holdShootAction = input.currentActionMap.FindAction("Shoot");
+			holdShootAction.started += OnHoldShoot;
+			holdShootAction.canceled += OnReleaseShoot;
 		}
 
         private void OnDisable()
         {
 			holdJumpAction.started -= OnHoldJumping;
 			holdJumpAction.canceled -= OnReleaseJump;
+			holdShootAction.started -= OnHoldShoot;
+			holdShootAction.canceled -= OnReleaseShoot;
 		}
 
 		private void OnEnable()
@@ -79,9 +87,28 @@ namespace StarterAssets
 			holdjump = false;
 		}
 
+		public void OnHoldShoot(InputAction.CallbackContext obj)
+		{
+			shooting = true;
+		}
+		public void OnReleaseShoot(InputAction.CallbackContext obj)
+		{
+			holdjump = false;
+		}
+
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		public void OnNextWeapon(InputValue value)
+		{
+			NewWeaponInput(1);
+		}
+
+		public void OnPreviousWeapon(InputValue value)
+		{
+			NewWeaponInput(-1);
 		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
@@ -106,6 +133,11 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+
+		public void NewWeaponInput(int direction)
+		{
+			newWeaponDirection = direction;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID
