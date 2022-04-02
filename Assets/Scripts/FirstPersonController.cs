@@ -73,6 +73,7 @@ namespace StarterAssets
 		
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
+		WeaponHandler weaponHandler;
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -84,6 +85,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			weaponHandler = GetComponent<WeaponHandler>();
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_playerInput = GetComponent<PlayerInput>();
@@ -171,11 +173,14 @@ namespace StarterAssets
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
-			if (_input.move != Vector2.zero)
+			bool isMoving = _input.move != Vector2.zero;
+			if (isMoving)
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
 			}
+
+			weaponHandler.SetWeaponMovement(isMoving);
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);

@@ -13,6 +13,10 @@ public class WeaponHandler : MonoBehaviour
     int weaponIndex = 0;
     [SerializeField]
     List<GameObject> WeaponObjects;
+
+    [SerializeField]
+    List<Animator> WeaponAnimators;
+
     bool holdShoot;
     private StarterAssets.StarterAssetsInputs input;
 
@@ -44,6 +48,7 @@ public class WeaponHandler : MonoBehaviour
         WeaponObjects[newWeaponIndex].SetActive(true);
         activeWeapon = WeaponObjects[newWeaponIndex].GetComponent<IWeapon>();
         weaponIndex = newWeaponIndex;
+        SetWeaponMovement(false);
     }
 
     void Start()
@@ -77,8 +82,11 @@ public class WeaponHandler : MonoBehaviour
             {
                 holdShoot = false;
             }
-        }
+        }  
+    }
 
-       
+    public void SetWeaponMovement(bool isMoving)
+    {
+        WeaponAnimators[weaponIndex].SetBool("isMoving", isMoving);
     }
 }
