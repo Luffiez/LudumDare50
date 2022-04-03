@@ -90,6 +90,6 @@ public class WeaponHandler : MonoBehaviour
 
     public void SetWeaponMovement(bool isMoving)
     {
-        WeaponAnimators[weaponIndex].SetBool("isMoving", isMoving);
+        //WeaponAnimators[weaponIndex].SetBool("isMoving", isMoving);
     }
 }
