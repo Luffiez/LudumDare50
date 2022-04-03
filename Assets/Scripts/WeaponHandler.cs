@@ -72,6 +72,8 @@ public class WeaponHandler : MonoBehaviour
             }
             WeaponAnimators[i].gameObject.SetActive(false);
         }
+
+        OnWeaponChanged?.Invoke(activeWeapon);
     }
 
     // Update is called once per frame

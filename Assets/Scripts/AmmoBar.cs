@@ -18,7 +18,7 @@ public class AmmoBar : MonoBehaviour
 
     IWeapon currentWeapon;
 
-    private void Start()
+    private void Awake()
     {
         weaponHandler.OnWeaponChanged.AddListener(OnWeaponChanged);
     }
