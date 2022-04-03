@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpHower : MonoBehaviour
+public class PowerUpHover : MonoBehaviour
 {
     // Start is called before the first frame update
     float startY;
