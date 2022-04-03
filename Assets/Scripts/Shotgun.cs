@@ -19,6 +19,8 @@ public class Shotgun : MonoBehaviour, IWeapon
     float ShootTimer = 0;
     [SerializeField]
     float shootTime;
+    [SerializeField]
+    LayerMask layerMask;
     public void HoldShoot()
     {
 
@@ -46,7 +48,7 @@ public class Shotgun : MonoBehaviour, IWeapon
                 vectorSpread += Vector3.forward * Random.Range(-1f, 1f);
                 //random again to change the spread, othervise its always at the edge of the circle
                 Vector3 shootDirection = cameraForward + vectorSpread.normalized * Random.Range(-spread, spread);
-                commands[i] = new RaycastCommand(cameraPosition, shootDirection);
+                commands[i] = new RaycastCommand(cameraPosition, shootDirection,Mathf.Infinity,layerMask);
             }
             JobHandle handle = RaycastCommand.ScheduleBatch(commands, results, 1, default(JobHandle));
             handle.Complete();
