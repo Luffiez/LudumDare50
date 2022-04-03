@@ -22,29 +22,24 @@ public class DemonCat : MonoBehaviour
         animator = GetComponent<Animator>();
         timer = attackRate;
         navigator = GetComponent<EnemyNavigator>();
-        navigator.OnReachedPlayer.AddListener(OnReachedPlayer);
-        navigator.PlayerOutOfRange.AddListener(OnPlayerOutOfRange);
     }
 
-    private void OnPlayerOutOfRange()
-    {
-        withinRange = false;
-    }
-
-    private void OnReachedPlayer()
-    {
-        withinRange = true;
-    }
 
     private void Update()
     {
-        if (withinRange && timer <= 0)
+        if(DistanceToPlayer() <= navigator.StoppingDistance && timer <= 0)
             Attack();
 
         if (timer > 0)
             timer -= Time.deltaTime;
 
         animator.SetBool("moving", navigator.IsMoving);
+    }
+
+
+    float DistanceToPlayer()
+    {
+        return Vector3.Distance(transform.position, playerHealth.transform.position);
     }
 
     void Attack()

@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 2
-  damage: 10
-  movementPauseOnShoot: 3
+  damage: 0
+  movementPauseOnShoot: 1
   withinRange: 0
 --- !u!1 &7874944437460533610
 GameObject:
