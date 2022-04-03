@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4853,7 +4853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905843, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_Name
-      value: Cowboy Bomber
+      value: Pirate Bomber
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: wanderRadius
@@ -4960,3 +4960,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticles: {fileID: 7559708027050130190, guid: 7254ba025fe24d04788ca4e1ca0102f0, type: 3}
+  rollParticles: {fileID: 1528089179}

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyKamikaze : MonoBehaviour
 {
     [SerializeField] GameObject explosionParticles;
+    [SerializeField] ParticleSystem rollParticles;
     EnemyNavigator navigator;
     Animator animator;
 
@@ -38,10 +39,19 @@ public class EnemyKamikaze : MonoBehaviour
     void ManageRollAnimation()
     {
         if (navigator.PlayerInReach)
+        {
             animator.SetFloat("speed", 1);
+            rollParticles.Play();
+        }
         else if (animator.GetFloat("speed") != 0.5f && navigator.IsMoving)
+        {
             animator.SetFloat("speed", 0.5f);
+            rollParticles.Stop();
+        }
         else if(animator.GetFloat("speed") != 0f)
+        {
             animator.SetFloat("speed", 0f);
+            rollParticles.Stop();
+        }
     }
 }
