@@ -4,6 +4,9 @@ public interface IWeapon
     public int AmmoCap { get; }
 
     public void AddAmmo(int amount);
-    public void Shoot();
+  
     public void HoldShoot();
+
+    public OnAmmoChangedEvent OnAmmoChanged { get; }
 }
+

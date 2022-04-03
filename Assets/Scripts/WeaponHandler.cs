@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -18,13 +19,18 @@ public class WeaponHandler : MonoBehaviour
     List<Animator> WeaponAnimators;
     [SerializeField]
     float changeTime = 0.3f;
-    float changeTimer =0f;
-    bool holdShoot;
+    float changeTimer = 0f;
+
     private StarterAssets.StarterAssetsInputs input;
+
+    public WeaponChangedEvent OnWeaponChanged;
+
+    public IWeapon ActiveWeapon { get => activeWeapon; }
 
     private void Awake()
     {
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
+        OnWeaponChanged = new WeaponChangedEvent();
     }
 
 
@@ -51,7 +57,7 @@ public class WeaponHandler : MonoBehaviour
         WeaponAnimators[weaponIndex].gameObject.SetActive(false);
         WeaponAnimators[newWeaponIndex].gameObject.SetActive(true);
         weaponIndex = newWeaponIndex;
-       
+        OnWeaponChanged?.Invoke(activeWeapon);
         SetWeaponMovement(false);
     }
 
@@ -78,21 +84,9 @@ public class WeaponHandler : MonoBehaviour
         }
         else
         {
-            //Debug.Log("shoot:" + input.shooting);
-            //Debug.Log("holdShoot:" + holdShoot);
             if (input.shooting)
             {
                 activeWeapon.HoldShoot();
-                if (!holdShoot)
-                {
-                    activeWeapon.Shoot();
-                    holdShoot = true;
-                }
-
-            }
-            else
-            {
-                holdShoot = false;
             }
         }
         input.mouseWheel = 0;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
+using System.Collections;
 
 public class Shotgun : MonoBehaviour, IWeapon
 {
@@ -19,9 +20,15 @@ public class Shotgun : MonoBehaviour, IWeapon
     float shootTime;
 
     [SerializeField]
+    Light lightSrc;
+
+    [SerializeField]
     int ammoCap = 8;
 
     int ammoCount;
+
+    public OnAmmoChangedEvent OnAmmoChanged { get => _OnAmmoChanged; }
+    OnAmmoChangedEvent _OnAmmoChanged = new OnAmmoChangedEvent();
 
     private void Start()
     {
@@ -35,14 +42,12 @@ public class Shotgun : MonoBehaviour, IWeapon
     public void AddAmmo(int amount)
     {
         ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+        _OnAmmoChanged?.Invoke(ammoCount);
     }
+
+
 
     public void HoldShoot()
-    {
-
-    }
-
-    public void Shoot()
     {
         if (ShootTimer < Time.time)
         {
@@ -50,7 +55,9 @@ public class Shotgun : MonoBehaviour, IWeapon
             if (AmmoCount <= 0)
                 return;
             ammoCount--;
+            _OnAmmoChanged?.Invoke(ammoCount);
 
+            StartCoroutine(ToggleLight());
             animator.Play("Shoot");
             //https://docs.unity3d.com/ScriptReference/RaycastCommand.html
             NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(nPellets, Allocator.TempJob);
@@ -96,6 +103,13 @@ public class Shotgun : MonoBehaviour, IWeapon
                     }
                 }
             }
-        } 
+        }
+    }
+
+    IEnumerator ToggleLight()
+    {
+        lightSrc.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightSrc.enabled = false;
     }
 }

@@ -28,18 +28,15 @@ public class Pistol : MonoBehaviour, IWeapon
 
     public int AmmoCount { get => ammoCount; }
     public int AmmoCap { get => ammoCap; }
-
+    public OnAmmoChangedEvent OnAmmoChanged { get => _OnAmmoChanged; }
+    OnAmmoChangedEvent _OnAmmoChanged = new OnAmmoChangedEvent();
     public void AddAmmo(int amount)
     {
         ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+        _OnAmmoChanged?.Invoke(ammoCount);
     }
 
     public void HoldShoot()
-    {
-        
-    }
-
-    public void Shoot()
     {
         if (ShootTimer < Time.time)
         {
@@ -49,6 +46,7 @@ public class Pistol : MonoBehaviour, IWeapon
                 return;
 
             ammoCount--;
+            _OnAmmoChanged?.Invoke(ammoCount);
             StartCoroutine(ToggleLight());
             animator.Play("Shoot");
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
@@ -71,7 +69,6 @@ public class Pistol : MonoBehaviour, IWeapon
             }
         }
     }
-
 
     IEnumerator ToggleLight()
     {
