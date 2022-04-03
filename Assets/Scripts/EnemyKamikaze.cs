@@ -6,15 +6,17 @@ public class EnemyKamikaze : MonoBehaviour
     EnemyNavigator navigator;
     Animator animator;
 
+    Transform player;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         navigator = GetComponent<EnemyNavigator>();
         animator = GetComponent<Animator>();
 
-        navigator.OnReachedPlayer.AddListener(OnExplode);
     }
 
-    private void OnExplode()
+    private void Explode()
     {
         GameObject particles = Instantiate(explosionParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -23,6 +25,14 @@ public class EnemyKamikaze : MonoBehaviour
     void Update()
     {
         ManageRollAnimation();
+
+        if (DistanceToPlayer() <= navigator.StoppingDistance)
+            Explode();
+    }
+
+    float DistanceToPlayer()
+    {
+        return Vector3.Distance(transform.position, player.position);
     }
 
     void ManageRollAnimation()

@@ -48,6 +48,5 @@ public class DemonCat : MonoBehaviour
         timer = attackRate;
         animator.Play("Attack");
         playerHealth.NormalDamage(damage);
-        Debug.Log("Kill player??");
     }
 }
