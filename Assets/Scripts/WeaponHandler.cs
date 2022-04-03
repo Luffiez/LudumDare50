@@ -47,8 +47,6 @@ public class WeaponHandler : MonoBehaviour
                 newWeaponIndex = WeaponObjects.Count - 1;
             }
         }
-        WeaponObjects[weaponIndex].SetActive(false);
-        WeaponObjects[newWeaponIndex].SetActive(true);
         activeWeapon = WeaponObjects[newWeaponIndex].GetComponent<IWeapon>();
         WeaponAnimators[weaponIndex].gameObject.SetActive(false);
         WeaponAnimators[newWeaponIndex].gameObject.SetActive(true);
