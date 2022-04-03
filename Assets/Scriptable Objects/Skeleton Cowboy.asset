@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38c66fd99f818fe45b5cfcbc2ddb02d4, type: 3}
-  m_Name: Octopuss
+  m_Name: Skeleton Cowboy
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8664811568053905843, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+  prefab: {fileID: 8664811568053905843, guid: 5b0e007ba73033944931eaed6aa2a80e, type: 3}
   spawnChance: 0.75
