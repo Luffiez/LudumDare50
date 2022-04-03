@@ -15,9 +15,11 @@ namespace StarterAssets
 		public bool shooting;
 		private InputAction holdJumpAction;
 		private InputAction holdShootAction;
+		private InputAction mouseWheelAction;
 		PlayerInput input;
 		public bool sprint;
 		public int newWeaponDirection =0;
+		public float mouseWheel;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -37,6 +39,8 @@ namespace StarterAssets
 			holdShootAction = input.currentActionMap.FindAction("Shoot");
 			holdShootAction.started += OnHoldShoot;
 			holdShootAction.canceled += OnReleaseShoot;
+			mouseWheelAction = input.currentActionMap.FindAction("MouseWheel");
+			mouseWheelAction.started += OnMouseWheeling;
 		}
 
         private void OnDisable()
@@ -45,12 +49,16 @@ namespace StarterAssets
 			holdJumpAction.canceled -= OnReleaseJump;
 			holdShootAction.started -= OnHoldShoot;
 			holdShootAction.canceled -= OnReleaseShoot;
+			mouseWheelAction.started -= OnMouseWheeling;
 		}
 
 		private void OnEnable()
 		{
 			holdJumpAction.started += OnHoldJumping;
 			holdJumpAction.canceled += OnReleaseJump;
+			holdShootAction.started += OnHoldShoot;
+			holdShootAction.canceled += OnReleaseShoot;
+			mouseWheelAction.started += OnMouseWheeling;
 		}
 
 
@@ -82,6 +90,11 @@ namespace StarterAssets
 			holdjump = true;
 		}
 
+		public void OnMouseWheeling(InputAction.CallbackContext obj)
+		{
+			NewWeaponInput(obj.ReadValue<Vector2>().y);
+		}
+
 		public void OnReleaseJump(InputAction.CallbackContext obj)
 		{
 			holdjump = false;
@@ -101,15 +114,6 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 
-		public void OnNextWeapon(InputValue value)
-		{
-			NewWeaponInput(1);
-		}
-
-		public void OnPreviousWeapon(InputValue value)
-		{
-			NewWeaponInput(-1);
-		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -135,9 +139,9 @@ namespace StarterAssets
 			sprint = newSprintState;
 		}
 
-		public void NewWeaponInput(int direction)
+		public void NewWeaponInput(float direction)
 		{
-			newWeaponDirection = direction;
+			mouseWheel = direction;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID

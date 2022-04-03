@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d67a327587ff4b347b53979f937afb28, type: 2}
+  m_Motion: {fileID: 7400000, guid: 82c2a82e48042bd479ed009d6d1057f3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -73,7 +73,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 67ae452702e0a3d4e8fd91c3163e8eb1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 51864b052e8102948825fe4ef0a3484f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -111,7 +111,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Piston Sprites
+  m_Name: ShotGun
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isMoving
@@ -251,7 +251,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c2e9046b4c2322d4b9fae05ae7fcedc9, type: 2}
+  m_Motion: {fileID: 7400000, guid: d5a53a5510bd6b742a3f4e443f4185e2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

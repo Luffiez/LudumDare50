@@ -16,7 +16,9 @@ public class WeaponHandler : MonoBehaviour
 
     [SerializeField]
     List<Animator> WeaponAnimators;
-
+    [SerializeField]
+    float changeTime = 0.3f;
+    float changeTimer =0f;
     bool holdShoot;
     private StarterAssets.StarterAssetsInputs input;
 
@@ -25,47 +27,54 @@ public class WeaponHandler : MonoBehaviour
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
     }
 
+
     void SwapWeapon(bool nextWeapon)
     {
         int newWeaponIndex = weaponIndex;
         if (nextWeapon)
         {
-            weaponIndex++;
-            if(weaponIndex >= WeaponObjects.Count)
+            newWeaponIndex++;
+            if(newWeaponIndex >= WeaponObjects.Count)
             {
                 newWeaponIndex = 0;
-                weaponIndex--;
             }
         }
         else
         {
-            weaponIndex--;
-            if (weaponIndex < 0)
+            newWeaponIndex--;
+            if (newWeaponIndex < 0)
             {
                 newWeaponIndex = WeaponObjects.Count - 1;
-
-                weaponIndex++;
             }
         }
-        WeaponObjects[weaponIndex].SetActive(false);
-        WeaponObjects[newWeaponIndex].SetActive(true);
         activeWeapon = WeaponObjects[newWeaponIndex].GetComponent<IWeapon>();
+        WeaponAnimators[weaponIndex].gameObject.SetActive(false);
+        WeaponAnimators[newWeaponIndex].gameObject.SetActive(true);
         weaponIndex = newWeaponIndex;
+       
         SetWeaponMovement(false);
     }
 
     void Start()
     {
         activeWeapon = WeaponObjects[weaponIndex].GetComponent<IWeapon>();
+        for (int i = 0; i < WeaponObjects.Count; i++)
+        {
+            if (i == weaponIndex)
+            {
+                continue;
+            }
+            WeaponAnimators[i].gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.newWeaponDirection != 0)
+        if (input.mouseWheel != 0 && changeTimer < Time.time)
         {
-            SwapWeapon(input.newWeaponDirection == 1);
-            input.newWeaponDirection = 0;
+            SwapWeapon(input.newWeaponDirection >0);
+            changeTimer = Time.time + changeTime;
         }
         else
         {
@@ -85,7 +94,8 @@ public class WeaponHandler : MonoBehaviour
             {
                 holdShoot = false;
             }
-        }  
+        }
+        input.mouseWheel = 0;
     }
 
     public void SetWeaponMovement(bool isMoving)
