@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public interface IWeapon 
 {
+    public int AmmoCount { get; }
+    public int AmmoCap { get; }
+
+    public void AddAmmo(int amount);
     public void Shoot();
     public void HoldShoot();
 }

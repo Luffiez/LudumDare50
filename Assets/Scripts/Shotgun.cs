@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
@@ -19,6 +17,26 @@ public class Shotgun : MonoBehaviour, IWeapon
     float ShootTimer = 0;
     [SerializeField]
     float shootTime;
+
+    [SerializeField]
+    int ammoCap = 8;
+
+    int ammoCount;
+
+    private void Start()
+    {
+        ammoCount = ammoCap;
+    }
+
+    public int AmmoCount => ammoCount;
+
+    public int AmmoCap => ammoCap;
+
+    public void AddAmmo(int amount)
+    {
+        ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+    }
+
     public void HoldShoot()
     {
 
@@ -28,6 +46,11 @@ public class Shotgun : MonoBehaviour, IWeapon
     {
         if (ShootTimer < Time.time)
         {
+            ShootTimer = shootTime + Time.time;
+            if (AmmoCount <= 0)
+                return;
+            ammoCount--;
+
             animator.Play("Shoot");
             //https://docs.unity3d.com/ScriptReference/RaycastCommand.html
             NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(nPellets, Allocator.TempJob);
@@ -42,7 +65,6 @@ public class Shotgun : MonoBehaviour, IWeapon
                 //direction in circle
                 vectorSpread += Vector3.up * Random.Range(-1f, 1f);
                 vectorSpread += Vector3.right * Random.Range(-1f, 1f);
-                vectorSpread += Vector3.up * Random.Range(-1f, 1f);
                 vectorSpread += Vector3.forward * Random.Range(-1f, 1f);
                 //random again to change the spread, othervise its always at the edge of the circle
                 Vector3 shootDirection = cameraForward + vectorSpread.normalized * Random.Range(-spread, spread);
@@ -74,7 +96,6 @@ public class Shotgun : MonoBehaviour, IWeapon
                     }
                 }
             }
-            ShootTimer = shootTime + Time.time;
         } 
     }
 }

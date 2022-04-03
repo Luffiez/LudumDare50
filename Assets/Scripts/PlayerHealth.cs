@@ -6,15 +6,15 @@ public class PlayerHealth : MonoBehaviour, IHurt
     [SerializeField] private int maxHealth;
     private int currentHealth;
 
-    public HealthChangedEvent OnTakeDamage;
+    public HealthChangedEvent OnHealthChanged;
 
     public int MaxHealth { get => maxHealth; }
     public int CurrentHealth { get => currentHealth; }
 
     public void NormalDamage(int damage)
     {
-        currentHealth -= damage;
-        OnTakeDamage?.Invoke(currentHealth, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, currentHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour, IHurt
     public void RestoreHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, currentHealth, maxHealth);
-        OnTakeDamage.Invoke(currentHealth, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     private void Die()
@@ -33,8 +33,10 @@ public class PlayerHealth : MonoBehaviour, IHurt
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void Start()
+    void Awake()
     {
-        currentHealth = maxHealth;    
+        if (OnHealthChanged == null)
+            OnHealthChanged = new HealthChangedEvent();
+        currentHealth = maxHealth;
     }
 }

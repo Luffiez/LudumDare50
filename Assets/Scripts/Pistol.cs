@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour, IWeapon
@@ -12,6 +13,27 @@ public class Pistol : MonoBehaviour, IWeapon
     float ShootTimer = 0;
     [SerializeField]
     float shootTime;
+    [SerializeField] 
+    int ammoCap = 20;
+
+    [SerializeField]
+    Light lightSrc;
+
+    int ammoCount;
+
+    private void Start()
+    {
+        ammoCount = ammoCap;
+    }
+
+    public int AmmoCount { get => ammoCount; }
+    public int AmmoCap { get => ammoCap; }
+
+    public void AddAmmo(int amount)
+    {
+        ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+    }
+
     public void HoldShoot()
     {
         
@@ -21,6 +43,13 @@ public class Pistol : MonoBehaviour, IWeapon
     {
         if (ShootTimer < Time.time)
         {
+            ShootTimer = Time.time + shootTime;
+
+            if (AmmoCount <= 0)
+                return;
+
+            ammoCount--;
+            StartCoroutine(ToggleLight());
             animator.Play("Shoot");
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
             {
@@ -40,8 +69,14 @@ public class Pistol : MonoBehaviour, IWeapon
                 // look at the hit's relative up, using the normal as the up vector
                 hitParticles.transform.rotation = Quaternion.LookRotation(hit.point + lookAt, hit.normal);
             }
-            ShootTimer = Time.time + shootTime;
         }
+    }
 
+
+    IEnumerator ToggleLight()
+    {
+        lightSrc.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightSrc.enabled = false;
     }
 }
