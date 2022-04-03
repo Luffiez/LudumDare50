@@ -13,7 +13,6 @@ public class EnemyHealth : MonoBehaviour, IHurt
 
     public void NormalDamage(int damage)
     {
-        Debug.Log("Take damage");
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -22,7 +21,7 @@ public class EnemyHealth : MonoBehaviour, IHurt
 
     private void Die()
     {
-        GameObject particles = Instantiate(deathParticles, transform.position + Vector3.up, Quaternion.identity);
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(particles, 2f);
 
         Destroy(gameObject);

@@ -249,8 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a237045e8309394b96b37a436be7012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 5
-  playerDetectionRange: 20
+  wanderRadius: 10
+  playerDetectionRadius: 5
   stoppingDistance: 10
   obstacleMask:
     serializedVersion: 2
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
+  deathParticles: {fileID: 9136696371472398154, guid: 102c47f1a64c57342a33135074a18571, type: 3}
 --- !u!136 &1322197870
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -302,8 +303,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
+  m_Radius: 1
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &9027632141369323147
