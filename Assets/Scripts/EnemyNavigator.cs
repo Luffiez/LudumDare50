@@ -29,9 +29,9 @@ public class EnemyNavigator : MonoBehaviour
         !Physics.Linecast(transform.position, player.position, obstacleMask);
 
     [HideInInspector]
-    public UnityEvent OnReachedPlayer;
+    public UnityEvent OnReachedPlayer = new UnityEvent();
     [HideInInspector]
-    public UnityEvent PlayerOutOfRange;
+    public UnityEvent PlayerOutOfRange = new UnityEvent();
 
     private void Awake()
     {
@@ -49,6 +49,12 @@ public class EnemyNavigator : MonoBehaviour
         {
             MoveTowardsPlayer();
             return;
+        }
+
+        if (reachedPlayer)
+        {
+            reachedPlayer = false;
+            PlayerOutOfRange?.Invoke();
         }
 
         if (wandering)
@@ -99,11 +105,13 @@ public class EnemyNavigator : MonoBehaviour
         if (agent.destination != player.position)
         {
             agent.destination = player.position;
-            if (reachedPlayer)
-            {
-                reachedPlayer = false;
-                PlayerOutOfRange?.Invoke();
-            }
+        }
+
+        if (reachedPlayer)
+        {
+            reachedPlayer = false;
+            PlayerOutOfRange?.Invoke();
+            return;
         }
 
         if (ReachedDestination())
