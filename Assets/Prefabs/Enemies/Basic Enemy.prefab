@@ -249,9 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a237045e8309394b96b37a436be7012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 10
-  playerDetectionRadius: 5
-  stoppingDistance: 10
+  wanderRadius: 20
+  playerDetectionRadius: 15
+  stoppingDistance: 8
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8

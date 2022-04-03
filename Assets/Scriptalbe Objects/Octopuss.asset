@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c66fd99f818fe45b5cfcbc2ddb02d4, type: 3}
+  m_Name: Octopuss
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8664811568053905843, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+  spawnChance: 0.75

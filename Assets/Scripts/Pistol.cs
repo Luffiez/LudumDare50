@@ -21,7 +21,6 @@ public class Pistol : MonoBehaviour, IWeapon
     {
         if (ShootTimer < Time.time)
         {
-
             animator.Play("Shoot");
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
             {

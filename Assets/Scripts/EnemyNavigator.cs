@@ -21,7 +21,7 @@ public class EnemyNavigator : MonoBehaviour
 
     float idleTimer = 0;
     bool reachedPlayer = false;
-    bool wandering = false;
+    bool wandering = true;
     public bool PlayerInReach =>
         DistanceToPlayer() <= playerDetectionRadius;
     bool PlayerInView =>
@@ -80,8 +80,7 @@ public class EnemyNavigator : MonoBehaviour
         if(agent.destination != wanderTarget)
             agent.destination = wanderTarget;
         
-
-        if (Vector3.Distance(transform.position, agent.destination) < 0.1f)
+        if (ReachedDestination())
         {
             wandering = false;
             wanderTarget = GetRandomPosition(wanderRadius);
@@ -106,18 +105,23 @@ public class EnemyNavigator : MonoBehaviour
             }
         }
 
-        // Check if we've reached the destination
-        if (!agent.pathPending)
+        if (ReachedDestination())
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                if ((!agent.hasPath || agent.velocity.sqrMagnitude == 0f))
-                {
-                    OnReachedPlayer?.Invoke();
-                    reachedPlayer = true;
-                }
-            }
+            OnReachedPlayer?.Invoke();
+            reachedPlayer = true;
         }
+    }
+
+    bool ReachedDestination()
+    {
+        if (agent.pathPending)
+            return false;
+
+        if (agent.remainingDistance <= agent.stoppingDistance &&
+            !agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            return true;
+        
+        return false;
     }
 
     private void OnDrawGizmosSelected()
