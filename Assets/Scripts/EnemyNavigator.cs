@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class EnemyNavigator : MonoBehaviour
 {
     [SerializeField] float wanderRadius; // how far the enemy can wander
-    [SerializeField] float playerDetectionRange = 5f;
+    [SerializeField] float playerDetectionRadius = 5f;
     [SerializeField] float stoppingDistance = 1f;
     [SerializeField] LayerMask obstacleMask;
 
@@ -21,13 +21,15 @@ public class EnemyNavigator : MonoBehaviour
 
     float idleTimer = 0;
     bool reachedPlayer = false;
-    bool wandering = true;
-    bool PlayerInReach =>
-        DistanceToPlayer() <= playerDetectionRange;
+    bool wandering = false;
+    public bool PlayerInReach =>
+        DistanceToPlayer() <= playerDetectionRadius;
     bool PlayerInView =>
         !Physics.Linecast(transform.position, player.position, obstacleMask);
 
+    [HideInInspector]
     public UnityEvent OnReachedPlayer;
+    [HideInInspector]
     public UnityEvent PlayerOutOfRange;
 
     private void Awake()
@@ -37,6 +39,8 @@ public class EnemyNavigator : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = stoppingDistance;
     }
+
+    public bool IsMoving => agent.velocity != Vector3.zero;
 
     private void Update()
     {
@@ -63,9 +67,8 @@ public class EnemyNavigator : MonoBehaviour
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius;
         randomDirection += transform.position;
-        NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
-        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, radius, 1))
         {
             finalPosition = hit.position;
         }
@@ -74,9 +77,11 @@ public class EnemyNavigator : MonoBehaviour
 
     public void Wander()
     {
-        agent.destination = wanderTarget;
+        if(agent.destination != wanderTarget)
+            agent.destination = wanderTarget;
+        
 
-        if (Vector3.Distance(transform.position, wanderTarget) < 0.1f)
+        if (Vector3.Distance(transform.position, agent.destination) < 0.1f)
         {
             wandering = false;
             wanderTarget = GetRandomPosition(wanderRadius);
@@ -113,5 +118,16 @@ public class EnemyNavigator : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Wander Radius
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, wanderRadius);
+
+        // Player Detection Radius
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
 }

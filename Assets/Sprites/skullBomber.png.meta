@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: cb53e5b7378537b4cb7ae0bf90c6cc5a
+guid: 5d2b32becc962ae46b7bc859480da7a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4338779198008752485
-    second: SkullCowboy_0
+      213: 6226332593546781226
+    second: skullBomber_0
   - first:
-      213: 5055306929509789728
-    second: SkullCowboy_1
+      213: -142652747191682104
+    second: skullBomber_1
   - first:
-      213: 7514898820099288505
-    second: SkullCowboy_2
+      213: 4324386180150358163
+    second: skullBomber_2
   - first:
-      213: 8375275954167480012
-    second: SkullCowboy_3
+      213: -8462671966602658880
+    second: skullBomber_3
+  - first:
+      213: -3860932544164201619
+    second: skullBomber_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SkullCowboy_0
+      name: skullBomber_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5697a2851b0763c30800000000000000
-      internalID: 4338779198008752485
+      spriteID: a22eacb5180686650800000000000000
+      internalID: 6226332593546781226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullCowboy_1
+      name: skullBomber_1
       rect:
         serializedVersion: 2
         x: 64
@@ -150,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02070044ede082640800000000000000
-      internalID: 5055306929509789728
+      spriteID: 8cbf76d0512350ef0800000000000000
+      internalID: -142652747191682104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullCowboy_2
+      name: skullBomber_2
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bd250749a84a4860800000000000000
-      internalID: 7514898820099288505
+      spriteID: 390787bb15e430c30800000000000000
+      internalID: 4324386180150358163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullCowboy_3
+      name: skullBomber_3
       rect:
         serializedVersion: 2
         x: 192
@@ -192,8 +195,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccef5003b15fa3470800000000000000
-      internalID: 8375275954167480012
+      spriteID: 0cbfdfbfeac8e8a80800000000000000
+      internalID: -8462671966602658880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skullBomber_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6bf853ae463b6ac0800000000000000
+      internalID: -3860932544164201619
       vertices: []
       indices: 
       edges: []
