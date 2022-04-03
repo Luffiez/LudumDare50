@@ -32,6 +32,9 @@ public class AmmoPack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        weapon.AddAmmo(ammoAmount);
+        if (other.CompareTag("Player"))
+        {
+            weapon.AddAmmo(ammoAmount);
+        }
     }
 }
