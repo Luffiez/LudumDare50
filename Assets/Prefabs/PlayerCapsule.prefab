@@ -43,10 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c31d4be497b6949aa2bea61bfad974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normaldamage: 0
-  HitPrefab: {fileID: 0}
-  nPellets: 0
-  spread: 0
+  normaldamage: 5
+  HitPrefab: {fileID: 9086652730297972, guid: 606fd9e81c00e364fbc125c9ad7a7e0a, type: 3}
+  nPellets: 10
+  spread: 0.4
+  animator: {fileID: 0}
+  shootTime: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 127
 --- !u!1 &584733224550970502
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +98,7 @@ MonoBehaviour:
   normaldamage: 1
   HitPrefab: {fileID: 9086652730297972, guid: 606fd9e81c00e364fbc125c9ad7a7e0a, type: 3}
   animator: {fileID: 0}
+  shootTime: 0.3
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +380,7 @@ MonoBehaviour:
   shooting: 0
   sprint: 0
   newWeaponDirection: 0
+  mouseWheel: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -492,6 +499,8 @@ MonoBehaviour:
   - {fileID: 322423164128133581}
   WeaponAnimators:
   - {fileID: 0}
+  - {fileID: 0}
+  changeTime: 0.3
 --- !u!114 &35176480
 MonoBehaviour:
   m_ObjectHideFlags: 0
