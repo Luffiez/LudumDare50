@@ -37,6 +37,8 @@ public class AmmoBar : MonoBehaviour
             ammoIcon.sprite = ammoIcons[0];
         else if(currentWeapon is Shotgun)
             ammoIcon.sprite = ammoIcons[1];
+        else if (currentWeapon is Dynamite)
+            ammoIcon.sprite = ammoIcons[2];
 
         OnAmmoChanged(currentWeapon.AmmoCount);
     }

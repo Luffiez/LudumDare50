@@ -21,7 +21,7 @@ public class Pistol : MonoBehaviour, IWeapon
 
     int ammoCount;
 
-    private void Start()
+    private void Awake()
     {
         ammoCount = ammoCap;
     }
