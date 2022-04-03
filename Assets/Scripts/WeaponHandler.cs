@@ -27,6 +27,7 @@ public class WeaponHandler : MonoBehaviour
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
     }
 
+
     void SwapWeapon(bool nextWeapon)
     {
         int newWeaponIndex = weaponIndex;
@@ -49,13 +50,24 @@ public class WeaponHandler : MonoBehaviour
         WeaponObjects[weaponIndex].SetActive(false);
         WeaponObjects[newWeaponIndex].SetActive(true);
         activeWeapon = WeaponObjects[newWeaponIndex].GetComponent<IWeapon>();
+        WeaponAnimators[weaponIndex].gameObject.SetActive(false);
+        WeaponAnimators[newWeaponIndex].gameObject.SetActive(true);
         weaponIndex = newWeaponIndex;
+       
         SetWeaponMovement(false);
     }
 
     void Start()
     {
         activeWeapon = WeaponObjects[weaponIndex].GetComponent<IWeapon>();
+        for (int i = 0; i < WeaponObjects.Count; i++)
+        {
+            if (i == weaponIndex)
+            {
+                continue;
+            }
+            WeaponAnimators[i].gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

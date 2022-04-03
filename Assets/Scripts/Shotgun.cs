@@ -14,6 +14,8 @@ public class Shotgun : MonoBehaviour, IWeapon
     int nPellets;
     [SerializeField]
     float spread;
+    [SerializeField]
+    Animator animator;
     public void HoldShoot()
     {
 
@@ -21,6 +23,7 @@ public class Shotgun : MonoBehaviour, IWeapon
 
     public void Shoot()
     {
+        animator.Play("Shoot");
         //https://docs.unity3d.com/ScriptReference/RaycastCommand.html
         NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(nPellets, Allocator.TempJob);
         NativeArray<RaycastCommand> commands = new NativeArray<RaycastCommand>(nPellets, Allocator.TempJob);
