@@ -54,8 +54,8 @@ public class Dynamite : MonoBehaviour, IWeapon
                 return;
             animator.Play("Shoot");
 
-            _OnAmmoChanged?.Invoke(ammoCount);
             ammoCount--;
+            _OnAmmoChanged?.Invoke(ammoCount);
 
             GameObject dynamteObject =Instantiate(dynamitePrefab, Camera.main.transform.position, Quaternion.identity);
             Rigidbody rigidbody = dynamteObject.GetComponent<Rigidbody>();
