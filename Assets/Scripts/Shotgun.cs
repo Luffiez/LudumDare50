@@ -59,6 +59,11 @@ public class Shotgun : MonoBehaviour, IWeapon
                 lookAt = lookAt.y < 0 ? -lookAt : lookAt;
                 // look at the hit's relative up, using the normal as the up vector
                 hitParticles.transform.rotation = Quaternion.LookRotation(hits[i].point + lookAt, hits[i].normal);
+                IHurt hurt =hits[i].collider.gameObject.GetComponent<IHurt>();
+                if (hurt != null)
+                {
+                    hurt.NormalDamage(normaldamage);
+                }
             }
         }
     }

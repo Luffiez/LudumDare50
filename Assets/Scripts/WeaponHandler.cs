@@ -16,7 +16,9 @@ public class WeaponHandler : MonoBehaviour
 
     [SerializeField]
     List<Animator> WeaponAnimators;
-
+    [SerializeField]
+    float changeTime = 0.3f;
+    float changeTimer =0f;
     bool holdShoot;
     private StarterAssets.StarterAssetsInputs input;
 
@@ -30,21 +32,18 @@ public class WeaponHandler : MonoBehaviour
         int newWeaponIndex = weaponIndex;
         if (nextWeapon)
         {
-            weaponIndex++;
-            if(weaponIndex >= WeaponObjects.Count)
+            newWeaponIndex++;
+            if(newWeaponIndex >= WeaponObjects.Count)
             {
                 newWeaponIndex = 0;
-                weaponIndex--;
             }
         }
         else
         {
-            weaponIndex--;
-            if (weaponIndex < 0)
+            newWeaponIndex--;
+            if (newWeaponIndex < 0)
             {
                 newWeaponIndex = WeaponObjects.Count - 1;
-
-                weaponIndex++;
             }
         }
         WeaponObjects[weaponIndex].SetActive(false);
@@ -62,10 +61,10 @@ public class WeaponHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input.newWeaponDirection != 0)
+        if (input.mouseWheel != 0 && changeTimer < Time.time)
         {
-            SwapWeapon(input.newWeaponDirection == 1);
-            input.newWeaponDirection = 0;
+            SwapWeapon(input.newWeaponDirection >0);
+            changeTimer = Time.time + changeTime;
         }
         else
         {
@@ -85,11 +84,12 @@ public class WeaponHandler : MonoBehaviour
             {
                 holdShoot = false;
             }
-        }  
+        }
+        input.mouseWheel = 0;
     }
 
     public void SetWeaponMovement(bool isMoving)
     {
-        //WeaponAnimators[weaponIndex].SetBool("isMoving", isMoving);
+        WeaponAnimators[weaponIndex].SetBool("isMoving", isMoving);
     }
 }
