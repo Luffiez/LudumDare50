@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using Unity.Jobs;
+using System.Collections;
 
 public class Shotgun : MonoBehaviour, IWeapon
 {
@@ -21,10 +20,46 @@ public class Shotgun : MonoBehaviour, IWeapon
     float shootTime;
     [SerializeField]
     LayerMask layerMask;
+
+    [SerializeField]
+    Light lightSrc;
+
+    [SerializeField]
+    int ammoCap = 8;
+
+    int ammoCount;
+
+    public OnAmmoChangedEvent OnAmmoChanged { get => _OnAmmoChanged; }
+    OnAmmoChangedEvent _OnAmmoChanged = new OnAmmoChangedEvent();
+
+    private void Awake()
+    {
+        ammoCount = ammoCap;
+    }
+
+    public int AmmoCount => ammoCount;
+
+    public int AmmoCap => ammoCap;
+
+    public void AddAmmo(int amount)
+    {
+        ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+        _OnAmmoChanged?.Invoke(ammoCount);
+    }
+
+
+
     public void HoldShoot()
     {
         if (ShootTimer < Time.time)
         {
+            ShootTimer = shootTime + Time.time;
+            if (AmmoCount <= 0)
+                return;
+            ammoCount--;
+            _OnAmmoChanged?.Invoke(ammoCount);
+
+            StartCoroutine(ToggleLight());
             animator.Play("Shoot");
             //https://docs.unity3d.com/ScriptReference/RaycastCommand.html
             NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(nPellets, Allocator.TempJob);
@@ -70,12 +105,13 @@ public class Shotgun : MonoBehaviour, IWeapon
                     }
                 }
             }
-            ShootTimer = shootTime + Time.time;
         }
     }
 
-    public void Shoot()
+    IEnumerator ToggleLight()
     {
-        
+        lightSrc.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightSrc.enabled = false;
     }
 }

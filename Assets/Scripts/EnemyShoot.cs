@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] float fireRate = 0.5f;
+    [SerializeField] float movementPauseOnShoot = 5f;
     [SerializeField] float bulletSpeed = 5f;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform bulletSpawnPosition;
+    [SerializeField] Transform bulletSpawnPositionL;
+    [SerializeField] Transform bulletSpawnPositionR;
 
     float timer = 0;
     Transform player;
     EnemyNavigator navigator;
-    bool isShooting = false;
+    bool canShoot = false;
+    Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navigator = GetComponent<EnemyNavigator>();
         navigator.OnReachedPlayer.AddListener(StartShooting);
@@ -25,30 +27,42 @@ public class EnemyShoot : MonoBehaviour
 
     private void StopShooting()
     {
-        isShooting = false;
+        canShoot = false;
     }
 
     private void StartShooting()
     {
-        isShooting = true;
+        canShoot = true;
     }
 
     private void Update()
     {
-        if (!isShooting)
-            return;
-
-        timer += Time.deltaTime;
-        if (timer >= fireRate)
-            Shoot();
+        animator.SetBool("walking", navigator.IsMoving);
+        
+        if (navigator.PlayerInReach)
+        {
+            timer += Time.deltaTime;
+            if (timer >= fireRate)
+                StartCoroutine(Shoot());
+        }
     }
 
-    void Shoot()
+    IEnumerator Shoot()
     {
+        navigator.StartCoroutine(navigator.PauseMovement(movementPauseOnShoot));
         timer = 0;
+        animator.Play("Shoot");
 
-        Vector3 dir = (player.position + Vector3.up ) - bulletSpawnPosition.position;
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition.position, Quaternion.identity);
+        // Right
+        Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionR.position;
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPositionR.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+
+        yield return new WaitForSeconds(0.2f);
+
+        // Left
+        dir = (player.position + Vector3.up ) - bulletSpawnPositionL.position;
+        bullet = Instantiate(bulletPrefab, bulletSpawnPositionL.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour, IWeapon
@@ -12,10 +13,41 @@ public class Pistol : MonoBehaviour, IWeapon
     float ShootTimer = 0;
     [SerializeField]
     float shootTime;
+    [SerializeField] 
+    int ammoCap = 20;
+
+    [SerializeField]
+    Light lightSrc;
+
+    int ammoCount;
+
+    private void Awake()
+    {
+        ammoCount = ammoCap;
+    }
+
+    public int AmmoCount { get => ammoCount; }
+    public int AmmoCap { get => ammoCap; }
+    public OnAmmoChangedEvent OnAmmoChanged { get => _OnAmmoChanged; }
+    OnAmmoChangedEvent _OnAmmoChanged = new OnAmmoChangedEvent();
+    public void AddAmmo(int amount)
+    {
+        ammoCount = Mathf.Clamp(ammoCount + amount, ammoCount, ammoCap);
+        _OnAmmoChanged?.Invoke(ammoCount);
+    }
+
     public void HoldShoot()
     {
         if (ShootTimer < Time.time)
         {
+            ShootTimer = Time.time + shootTime;
+
+            if (AmmoCount <= 0)
+                return;
+
+            ammoCount--;
+            _OnAmmoChanged?.Invoke(ammoCount);
+            StartCoroutine(ToggleLight());
             animator.Play("Shoot");
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
             {
@@ -35,13 +67,13 @@ public class Pistol : MonoBehaviour, IWeapon
                 // look at the hit's relative up, using the normal as the up vector
                 hitParticles.transform.rotation = Quaternion.LookRotation(hit.point + lookAt, hit.normal);
             }
-            ShootTimer = Time.time + shootTime;
         }
     }
 
-    public void Shoot()
+    IEnumerator ToggleLight()
     {
-       
-
+        lightSrc.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightSrc.enabled = false;
     }
 }

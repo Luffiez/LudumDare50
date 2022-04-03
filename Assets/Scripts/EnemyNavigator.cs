@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -133,5 +134,12 @@ public class EnemyNavigator : MonoBehaviour
         // Player Detection Radius
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
+    }
+
+    public IEnumerator PauseMovement(float duration)
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        agent.isStopped = false;
     }
 }
