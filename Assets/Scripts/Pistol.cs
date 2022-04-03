@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour, IWeapon
@@ -8,6 +9,9 @@ public class Pistol : MonoBehaviour, IWeapon
     GameObject HitPrefab;
 
     [SerializeField]
+    Light lightSrc;
+
+    [SerializeField]
     Animator animator;
     public void HoldShoot()
     {
@@ -16,6 +20,7 @@ public class Pistol : MonoBehaviour, IWeapon
 
     public void Shoot()
     {
+        StartCoroutine(ToggleLight());
         animator.Play("Shoot");
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
         {
@@ -36,5 +41,12 @@ public class Pistol : MonoBehaviour, IWeapon
             // look at the hit's relative up, using the normal as the up vector
             hitParticles.transform.rotation = Quaternion.LookRotation(hit.point + lookAt, hit.normal);
         }
+    }
+
+    IEnumerator ToggleLight()
+    {
+        lightSrc.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightSrc.enabled = false;
     }
 }
