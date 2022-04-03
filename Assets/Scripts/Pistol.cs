@@ -14,11 +14,6 @@ public class Pistol : MonoBehaviour, IWeapon
     float shootTime;
     public void HoldShoot()
     {
-        
-    }
-
-    public void Shoot()
-    {
         if (ShootTimer < Time.time)
         {
             animator.Play("Shoot");
@@ -42,6 +37,11 @@ public class Pistol : MonoBehaviour, IWeapon
             }
             ShootTimer = Time.time + shootTime;
         }
+    }
+
+    public void Shoot()
+    {
+       
 
     }
 }

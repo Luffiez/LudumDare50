@@ -23,11 +23,6 @@ public class Shotgun : MonoBehaviour, IWeapon
     LayerMask layerMask;
     public void HoldShoot()
     {
-
-    }
-
-    public void Shoot()
-    {
         if (ShootTimer < Time.time)
         {
             animator.Play("Shoot");
@@ -48,7 +43,7 @@ public class Shotgun : MonoBehaviour, IWeapon
                 vectorSpread += Vector3.forward * Random.Range(-1f, 1f);
                 //random again to change the spread, othervise its always at the edge of the circle
                 Vector3 shootDirection = cameraForward + vectorSpread.normalized * Random.Range(-spread, spread);
-                commands[i] = new RaycastCommand(cameraPosition, shootDirection,Mathf.Infinity,layerMask);
+                commands[i] = new RaycastCommand(cameraPosition, shootDirection, Mathf.Infinity, layerMask);
             }
             JobHandle handle = RaycastCommand.ScheduleBatch(commands, results, 1, default(JobHandle));
             handle.Complete();
@@ -77,6 +72,11 @@ public class Shotgun : MonoBehaviour, IWeapon
                 }
             }
             ShootTimer = shootTime + Time.time;
-        } 
+        }
+    }
+
+    public void Shoot()
+    {
+        
     }
 }
