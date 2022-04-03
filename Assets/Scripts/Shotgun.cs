@@ -39,7 +39,6 @@ public class Shotgun : MonoBehaviour, IWeapon
                 //direction in circle
                 vectorSpread += Vector3.up * Random.Range(-1f, 1f);
                 vectorSpread += Vector3.right * Random.Range(-1f, 1f);
-                vectorSpread += Vector3.up * Random.Range(-1f, 1f);
                 vectorSpread += Vector3.forward * Random.Range(-1f, 1f);
                 //random again to change the spread, othervise its always at the edge of the circle
                 Vector3 shootDirection = cameraForward + vectorSpread.normalized * Random.Range(-spread, spread);

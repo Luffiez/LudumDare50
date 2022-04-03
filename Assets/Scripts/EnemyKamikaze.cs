@@ -17,7 +17,6 @@ public class EnemyKamikaze : MonoBehaviour
     private void OnExplode()
     {
         GameObject particles = Instantiate(explosionParticles, transform.position, Quaternion.identity);
-        Destroy(particles, 2f);
         Destroy(gameObject);
     }
 

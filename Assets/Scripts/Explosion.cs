@@ -4,10 +4,12 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] float damageRadius = 5;
+    [SerializeField] float lifeTime;
 
     private void Start()
     {
         DealDamage();
+        Destroy(this.gameObject, lifeTime);
     }
     void DealDamage()
     {
