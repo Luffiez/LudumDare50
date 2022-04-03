@@ -4837,15 +4837,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905843, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_Name
-      value: Cowboy Bomber
+      value: Cowboy Bomber Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: wanderRadius
-      value: 10
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: maxIdleDuration
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: stoppingDistance
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905854, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_RootOrder
@@ -4935,9 +4943,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34d1b4868acc9a43aab20532700f8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  damageRadius: 5
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 128
   explosionParticles: {fileID: 7559708027050130190, guid: 7254ba025fe24d04788ca4e1ca0102f0, type: 3}

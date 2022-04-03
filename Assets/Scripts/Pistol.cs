@@ -20,6 +20,7 @@ public class Pistol : MonoBehaviour, IWeapon
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out RaycastHit hit))
         {
             IHurt damage = hit.collider.gameObject.GetComponent<IHurt>();
+            Debug.Log(hit.collider.name);
           
             if (damage != null)
             {
