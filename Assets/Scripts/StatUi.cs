@@ -19,29 +19,25 @@ public class StatUi : MonoBehaviour
     TextMeshProUGUI wave;
     [SerializeField]
     TextMeshProUGUI ammoPickedUpp;
-    StatTracker StatTracker;
-
-    private void Start()
-    {
-        StatTracker = FindObjectOfType<StatTracker>();
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateStatText();
-    }
 
 
     public void UpdateStatText()
     {
-        Kills.text = "Kills:" + StatTracker.Kills; ;
-        DamageDealt.text = "Damage Dealt:" + StatTracker.DamageGiven;
-        DamageTaken.text = "Damage Taken:" + StatTracker.DamageTaken;
-        DamageHealed.text = "Health Recovered:" + StatTracker.DamageHealed;
-        int minutes = (int)StatTracker.TimeSurvived / 60;
-        int seconds = (int)StatTracker.TimeSurvived -minutes*60;
+        StatTracker statTracker;
+        statTracker = FindObjectOfType<StatTracker>();
+        Kills.text = "Kills:" + statTracker.Kills; ;
+        DamageDealt.text = "Damage Dealt:" + statTracker.DamageGiven;
+        DamageTaken.text = "Damage Taken:" + statTracker.DamageTaken;
+        DamageHealed.text = "Health Recovered:" + statTracker.DamageHealed;
+        int minutes = (int)statTracker.TimeSurvived / 60;
+        int seconds = (int)statTracker.TimeSurvived -minutes*60;
         Time.text = "Time:" + minutes + ":" + seconds;
-        wave.text = "Wave:" + StatTracker.Wave;
-        ammoPickedUpp.text="Ammo Collected:" + StatTracker.AmmoCollected;
+        wave.text = "Wave:" + statTracker.Wave;
+        ammoPickedUpp.text="Ammo Collected:" + statTracker.AmmoCollected;
+    }
+
+    private void OnEnable()
+    {
+        UpdateStatText();
     }
 }

@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour, IHurt
     VolumeProfile profile;
     public HealthChangedEvent OnHealthChanged;
     StatTracker statTracker;
+    StatUi statUi;
     bool dead = false;
     public bool Dead { get { return dead; } }
     public int MaxHealth { get => maxHealth; }
@@ -37,10 +38,15 @@ public class PlayerHealth : MonoBehaviour, IHurt
         }
 
         vignette.intensity.value = 0;
-        statTracker = FindObjectOfType<StatTracker>();
+    
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void Start()
+    {
+        statTracker = FindObjectOfType<StatTracker>();
     }
 
     public void NormalDamage(int damage)
