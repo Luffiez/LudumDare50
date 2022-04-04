@@ -228,7 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 2.5
   movementPauseOnShoot: 4
-  bulletSpeed: 1.5
+  bulletSpeed: 1.3
+  canWalk: 1
   bulletPrefab: {fileID: 511334090120784656, guid: 56dc42e36ea0fbc49a6dc57a820bbb4e, type: 3}
   bulletSpawnPositionL: {fileID: 153491293014684672}
   bulletSpawnPositionR: {fileID: 2997394893203223161}

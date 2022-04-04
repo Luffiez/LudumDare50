@@ -51,6 +51,8 @@ MonoBehaviour:
   upwardForce: 5
   forwardForce: 15
   ammoCap: 4
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 7b38b1b758f207b48a4a78cd0b7b94fa, type: 3}
 --- !u!1 &322423164128133581
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +107,8 @@ MonoBehaviour:
     m_Bits: 127
   lightSrc: {fileID: 0}
   ammoCap: 8
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: a764377339b869e459f5e53fb9258f73, type: 3}
 --- !u!1 &584733224550970502
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +158,8 @@ MonoBehaviour:
   shootTime: 0.3
   ammoCap: 20
   lightSrc: {fileID: 0}
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 6739c01659ad96d47987f4ddee226b36, type: 3}
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +374,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.25
-  m_SkinWidth: 0.02
+  m_SkinWidth: 0.2
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!114 &8616685848737228371

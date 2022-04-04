@@ -6,6 +6,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] float fireRate = 0.5f;
     [SerializeField] float movementPauseOnShoot = 5f;
     [SerializeField] float bulletSpeed = 5f;
+    [SerializeField] bool canWalk = true;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnPositionL;
     [SerializeField] Transform bulletSpawnPositionR;
@@ -37,7 +38,7 @@ public class EnemyShoot : MonoBehaviour
 
     private void Update()
     {
-        if(animator.GetBool("walking"))
+        if(canWalk)
             animator.SetBool("walking", navigator.IsMoving);
         
         if (navigator.PlayerInReach)

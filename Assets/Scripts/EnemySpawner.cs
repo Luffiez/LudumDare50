@@ -24,7 +24,6 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < enemyWaves.Length; i++)
         {
-            Debug.Log($"Spawn initial wave: {i}");
             EnemyWave wave = enemyWaves[i];
             for (int j = 0; j < enemyWaves[i].enemies.Length; j++)
             {
@@ -42,7 +41,6 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnAfterWaves()
     {
-        Debug.Log("Start spawning randomly from enemy pool!");
 
         bool spawning = true;
         while (spawning)
@@ -57,7 +55,6 @@ public class EnemySpawner : MonoBehaviour
             enemyPool.NewWave();
             waveCount++;
             statTracker.UpdateWave();
-            Debug.Log($"Wave {waveCount} spawned!");
         }
     }
 
@@ -73,6 +70,3 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemy, GetRandomSpawnPosition(), Quaternion.identity);
     }
 }
-
-
-
