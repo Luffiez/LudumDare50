@@ -2,55 +2,56 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Soundmanager : MonoBehaviour
+public class SoundUI : MonoBehaviour
 {
-    public static Soundmanager instance = null;
-
     public GameObject ambient;
     public GameObject music;
     public AudioClip[] clips;
     AudioSource musicSrc;
     public Button button;
     public TMP_Text buttonText;
-    int id = 0;
 
-    private void Awake()
-    {
-        if (instance != null)
-            Destroy(gameObject);
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+    GameAudio gameAudio;
 
     private void Start()
     {
         musicSrc = music.GetComponent<AudioSource>();
-    
-        button.onClick.AddListener(OnClick);
+        if(button)
+            button.onClick.AddListener(OnClick);
+
+        gameAudio = GameAudio.instance;
+        if(gameAudio != null)
+            Play(gameAudio.bgmIndex);
     }
 
     private void OnClick()
     {
-        id++;
-        if (id > clips.Length)
-            id = 0;
+        gameAudio.bgmIndex++;
 
+        if (gameAudio.bgmIndex > clips.Length)
+            gameAudio.bgmIndex = 0;
+        Play(gameAudio.bgmIndex);
+    }
+
+    void Play(int id)
+    {
         if (id > 0)
         {
             ambient.SetActive(false);
             music.SetActive(true);
             musicSrc.clip = clips[id - 1];
-
-            buttonText.text = clips[id - 1].name;
+            if(buttonText)
+                buttonText.text = clips[id - 1].name;
             musicSrc.Play();
         }
         else
         {
-            buttonText.text = "Ambient Music";
+            if (buttonText)
+                buttonText.text = "Ambient Music";
             ambient.SetActive(true);
             music.SetActive(false);
         }
     }
+
 }
 

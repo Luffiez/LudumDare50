@@ -202,13 +202,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d96695a02ea296f4e85c5f983e9d43ae, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 231
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3182465086247428896}
-  - component: {fileID: 3182465086247428903}
+  - component: {fileID: 322850259}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -319,7 +319,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3182465086247428903
+--- !u!114 &322850259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

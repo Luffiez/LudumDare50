@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("After Initial Levels")]
     [SerializeField] EnemyPool enemyPool = new EnemyPool();
     [SerializeField]
-    GameObject spawwParticles;
+    GameObject spawnParticles;
     int waveCount = 0;
     StatTracker statTracker;
 
@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy(GameObject enemy)
     {
         Vector3 randomPosition = GetRandomSpawnPosition();
-        Instantiate(spawwParticles, randomPosition, Quaternion.identity);
+        Instantiate(spawnParticles, randomPosition, Quaternion.identity);
         Instantiate(enemy, randomPosition, Quaternion.identity);
     }
 }
