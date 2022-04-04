@@ -7,11 +7,14 @@ public class DemonCat : MonoBehaviour
     [SerializeField] float movementPauseOnShoot = 5f;
     EnemyNavigator navigator;
 
+    [SerializeField] AudioClip attackClip;
+
     [SerializeField]
     bool withinRange = false;
     Animator animator;
 
     PlayerHealth playerHealth;
+    AudioSource audioSrc;
 
     float timer = 0;
 
@@ -21,6 +24,8 @@ public class DemonCat : MonoBehaviour
         animator = GetComponent<Animator>();
         timer = attackRate;
         navigator = GetComponent<EnemyNavigator>();
+
+        audioSrc = GetComponent<AudioSource>();
     }
 
 
@@ -47,5 +52,6 @@ public class DemonCat : MonoBehaviour
         timer = attackRate;
         animator.Play("Attack");
         playerHealth.NormalDamage(damage);
+        audioSrc.PlayOneShot(attackClip);
     }
 }
