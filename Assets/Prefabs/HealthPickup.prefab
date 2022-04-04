@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthRecovery: 10
+  audioClip: {fileID: 8300000, guid: 9a358474be710184499c8ef18b3ca4f9, type: 3}
 --- !u!82 &-4033676779789766990
 AudioSource:
   m_ObjectHideFlags: 0

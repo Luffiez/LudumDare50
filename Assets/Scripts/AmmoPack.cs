@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AmmoPack : MonoBehaviour
 {
     enum WeaponType {pistol, shotgun, dynamite };
@@ -11,9 +12,13 @@ public class AmmoPack : MonoBehaviour
     [SerializeField]
     int ammoAmount;
     StatTracker statTracker;
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip pickupSound;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         statTracker = GameObject.FindObjectOfType<StatTracker>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         switch (weaponType)
@@ -36,6 +41,7 @@ public class AmmoPack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            audioSource.PlayOneShot(pickupSound);
             statTracker.UpdateAmmoCollected(ammoAmount);
             weapon.AddAmmo(ammoAmount);
         }

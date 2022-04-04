@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   ammoAmount: 4
+  pickupSound: {fileID: 8300000, guid: 9a358474be710184499c8ef18b3ca4f9, type: 3}
 --- !u!136 &6827629041101221731
 CapsuleCollider:
   m_ObjectHideFlags: 0
