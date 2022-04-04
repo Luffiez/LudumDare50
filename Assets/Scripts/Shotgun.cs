@@ -32,6 +32,12 @@ public class Shotgun : MonoBehaviour, IWeapon
     public OnAmmoChangedEvent OnAmmoChanged { get => _OnAmmoChanged; }
     OnAmmoChangedEvent _OnAmmoChanged = new OnAmmoChangedEvent();
 
+    [SerializeField]
+    AudioSource audioSrc;
+
+    [SerializeField]
+    AudioClip attackClip;
+
     private void Awake()
     {
         ammoCount = ammoCap;
@@ -58,6 +64,7 @@ public class Shotgun : MonoBehaviour, IWeapon
                 return;
             ammoCount--;
             _OnAmmoChanged?.Invoke(ammoCount);
+            audioSrc.PlayOneShot(attackClip);
 
             StartCoroutine(ToggleLight());
             animator.Play("Shoot");

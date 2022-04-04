@@ -6,6 +6,10 @@ public class DynamiteBehavior : MonoBehaviour
 {
     [SerializeField]
     GameObject ExplosionObject;
+
+    [SerializeField]
+    AudioSource audioSrc;
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {

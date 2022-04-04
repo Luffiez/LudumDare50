@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public interface IWeapon 
 {
     public int AmmoCount { get; }
