@@ -4992,7 +4992,7 @@ GameObject:
   - component: {fileID: 4647321543175302543}
   - component: {fileID: -1915453492574402179}
   m_Layer: 0
-  m_Name: Explosion Particles
+  m_Name: Dynamite Explosion Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9914,7 +9914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b648cc5810a3b04e89274eb06f2453e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 20
   damageRadius: 5
   lifeTime: 2
 --- !u!82 &-1915453492574402179

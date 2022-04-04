@@ -4840,6 +4840,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: c77d4507cecb41648990d05e895177c0, type: 2}
     - target: {fileID: 1322197869, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322197869, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: deathParticles
       value: 
       objectReference: {fileID: 7559708027050130190, guid: 7254ba025fe24d04788ca4e1ca0102f0, type: 3}
@@ -4870,6 +4874,10 @@ PrefabInstance:
     - target: {fileID: 8664811568053905852, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: playerDetectionRadius
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664811568053905853, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
+      propertyPath: m_Speed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8664811568053905854, guid: 6d620f61e32412a4ea86018839f35097, type: 3}
       propertyPath: m_RootOrder
@@ -4940,16 +4948,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 180
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

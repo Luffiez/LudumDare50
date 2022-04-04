@@ -7079,21 +7079,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &282647516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282647515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc42a3842d4ef144c97608bd03c4d245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minCooldown: 10
-  maxCooldown: 120
-  clips: []
 --- !u!114 &282647517 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
@@ -7212,6 +7197,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &282647521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282647515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc42a3842d4ef144c97608bd03c4d245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCooldown: 10
+  maxCooldown: 120
+  clips: []
 --- !u!43 &285220700
 Mesh:
   m_ObjectHideFlags: 0
@@ -94058,6 +94058,10 @@ PrefabInstance:
       propertyPath: lightSrc
       value: 
       objectReference: {fileID: 132224177}
+    - target: {fileID: 2873784637969343768, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: normaldamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3109392848440696210, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: animator
       value: 
@@ -94070,6 +94074,10 @@ PrefabInstance:
       propertyPath: lightSrc
       value: 
       objectReference: {fileID: 132224177}
+    - target: {fileID: 3109392848440696210, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: normaldamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4764275891302939113, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: WeaponAnimators.Array.data[0]
       value: 

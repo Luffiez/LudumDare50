@@ -233,6 +233,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 511334090120784656, guid: 56dc42e36ea0fbc49a6dc57a820bbb4e, type: 3}
   bulletSpawnPositionL: {fileID: 153491293014684672}
   bulletSpawnPositionR: {fileID: 2997394893203223161}
+  shootClip: {fileID: 8300000, guid: 077d52f2df70a214c9aeaf5d4ebad88a, type: 3}
 --- !u!114 &1322197869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caed08762b5104c43a7ec3556de84c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 10
   deathParticles: {fileID: 9136696371472398154, guid: 102c47f1a64c57342a33135074a18571, type: 3}
   destroyParent: 0
 --- !u!136 &1322197870
@@ -317,10 +318,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 161
+  Priority: 210
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

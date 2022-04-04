@@ -10,12 +10,14 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnPositionL;
     [SerializeField] Transform bulletSpawnPositionR;
+    [SerializeField] AudioClip shootClip;
 
     float timer = 0;
     Transform player;
     EnemyNavigator navigator;
     bool canShoot = false;
     Animator animator;
+    AudioSource audioSrc;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class EnemyShoot : MonoBehaviour
         navigator = GetComponent<EnemyNavigator>();
         navigator.OnReachedPlayer.AddListener(StartShooting);
         navigator.PlayerOutOfRange.AddListener(StopShooting);
+        audioSrc = GetComponent<AudioSource>();
     }
 
     private void StopShooting()
@@ -62,11 +65,14 @@ public class EnemyShoot : MonoBehaviour
             Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionR.position;
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPositionR.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+            audioSrc.PlayOneShot(shootClip);
+
         }
-       
-        if(bulletSpawnPositionL)
+
+        if (bulletSpawnPositionL)
         {
             yield return new WaitForSeconds(0.2f);
+            audioSrc.PlayOneShot(shootClip);
 
             // Left
             Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionL.position;
