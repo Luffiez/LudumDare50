@@ -46,7 +46,6 @@ public class PlayerHealth : MonoBehaviour, IHurt
 
     private void Start()
     {
-        statUi = FindObjectOfType<StatUi>();
         statTracker = FindObjectOfType<StatTracker>();
     }
 
@@ -74,7 +73,6 @@ public class PlayerHealth : MonoBehaviour, IHurt
 
     IEnumerator Die(float duration = 0.5f)
     {
-        statUi.UpdateStatText();
         dead = true;
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
