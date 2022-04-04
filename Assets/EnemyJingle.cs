@@ -5,6 +5,7 @@ public class EnemyJingle : MonoBehaviour
 {
     public float minCooldown = 10f;
     public float maxCooldown = 120f;
+    public AudioClip[] clips;
 
     AudioSource audioSrc;
 
@@ -37,7 +38,10 @@ public class EnemyJingle : MonoBehaviour
     {
         Debug.Log("play");
         timer = 0;
-        cooldown = GetNewCooldown() + audioSrc.clip.length;
-        audioSrc.Play();
+        int id = Random.Range(0, clips.Length);
+        AudioClip clip = clips[id];
+        audioSrc.PlayOneShot(clip);
+
+        cooldown = GetNewCooldown() + clip.length;
     }
 }

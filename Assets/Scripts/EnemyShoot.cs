@@ -37,7 +37,8 @@ public class EnemyShoot : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool("walking", navigator.IsMoving);
+        if(animator.GetBool("walking"))
+            animator.SetBool("walking", navigator.IsMoving);
         
         if (navigator.PlayerInReach)
         {
@@ -51,6 +52,7 @@ public class EnemyShoot : MonoBehaviour
     {
         navigator.StartCoroutine(navigator.PauseMovement(movementPauseOnShoot));
         timer = 0;
+
         animator.Play("Shoot");
 
         if(bulletSpawnPositionR)
