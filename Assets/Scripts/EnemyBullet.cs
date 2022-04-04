@@ -8,7 +8,11 @@ public class EnemyBullet : MonoBehaviour
     {
         if(collision.collider.CompareTag("Player"))
         {
-            collision.collider.GetComponent<IHurt>().NormalDamage(damage);
+          IHurt hurt =  collision.collider.GetComponentInParent<IHurt>();
+            if (hurt != null)
+            {
+                hurt.NormalDamage(damage);
+            }
         }
         Destroy(gameObject);
     }

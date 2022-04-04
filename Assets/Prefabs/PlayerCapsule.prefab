@@ -51,8 +51,6 @@ MonoBehaviour:
   upwardForce: 5
   forwardForce: 15
   ammoCap: 4
-  audioSrc: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: 7b38b1b758f207b48a4a78cd0b7b94fa, type: 3}
 --- !u!1 &322423164128133581
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +105,6 @@ MonoBehaviour:
     m_Bits: 127
   lightSrc: {fileID: 0}
   ammoCap: 8
-  audioSrc: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: a764377339b869e459f5e53fb9258f73, type: 3}
 --- !u!1 &584733224550970502
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,8 +154,6 @@ MonoBehaviour:
   shootTime: 0.3
   ammoCap: 20
   lightSrc: {fileID: 0}
-  audioSrc: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: 6739c01659ad96d47987f4ddee226b36, type: 3}
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +231,7 @@ GameObject:
   - component: {fileID: 5393215578589016640}
   m_Layer: 7
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
