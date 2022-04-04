@@ -53,16 +53,22 @@ public class EnemyShoot : MonoBehaviour
         timer = 0;
         animator.Play("Shoot");
 
-        // Right
-        Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionR.position;
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPositionR.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+        if(bulletSpawnPositionR)
+        {
+            // Right
+            Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionR.position;
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPositionR.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+        }
+       
+        if(bulletSpawnPositionL)
+        {
+            yield return new WaitForSeconds(0.2f);
 
-        yield return new WaitForSeconds(0.2f);
-
-        // Left
-        dir = (player.position + Vector3.up ) - bulletSpawnPositionL.position;
-        bullet = Instantiate(bulletPrefab, bulletSpawnPositionL.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+            // Left
+            Vector3 dir = (player.position + Vector3.up) - bulletSpawnPositionL.position;
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPositionL.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+        }
     }
 }

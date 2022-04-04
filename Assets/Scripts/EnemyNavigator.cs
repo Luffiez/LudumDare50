@@ -43,6 +43,8 @@ public class EnemyNavigator : MonoBehaviour
 
     public bool IsMoving => agent.velocity != Vector3.zero;
 
+    public float StoppingDistance { get => stoppingDistance; }
+
     private void Update()
     {
         if (PlayerInReach) // && PlayerInView)
@@ -105,13 +107,13 @@ public class EnemyNavigator : MonoBehaviour
         if (agent.destination != player.position)
         {
             agent.destination = player.position;
-        }
 
-        if (reachedPlayer)
-        {
-            reachedPlayer = false;
-            PlayerOutOfRange?.Invoke();
-            return;
+            if (reachedPlayer)
+            {
+                reachedPlayer = false;
+                PlayerOutOfRange?.Invoke();
+                return;
+            }
         }
 
         if (ReachedDestination())
@@ -125,9 +127,8 @@ public class EnemyNavigator : MonoBehaviour
     {
         if (agent.pathPending)
             return false;
-
         if (agent.remainingDistance <= agent.stoppingDistance &&
-            !agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            !agent.hasPath || agent.velocity.sqrMagnitude < 0.1f)
             return true;
         
         return false;
