@@ -26,11 +26,6 @@ public class StatUi : MonoBehaviour
         StatTracker = FindObjectOfType<StatTracker>();
     }
 
-    private void FixedUpdate()
-    {
-        UpdateStatText();
-    }
-
 
     public void UpdateStatText()
     {

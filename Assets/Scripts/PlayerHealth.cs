@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour, IHurt
     VolumeProfile profile;
     public HealthChangedEvent OnHealthChanged;
     StatTracker statTracker;
+    StatUi statUi;
     bool dead = false;
     public bool Dead { get { return dead; } }
     public int MaxHealth { get => maxHealth; }
@@ -36,10 +37,16 @@ public class PlayerHealth : MonoBehaviour, IHurt
         }
 
         vignette.intensity.value = 0;
-        statTracker = FindObjectOfType<StatTracker>();
+    
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void Start()
+    {
+        statUi = FindObjectOfType<StatUi>();
+        statTracker = FindObjectOfType<StatTracker>();
     }
 
     public void NormalDamage(int damage)
@@ -66,6 +73,7 @@ public class PlayerHealth : MonoBehaviour, IHurt
 
     IEnumerator Die(float duration = 0.5f)
     {
+        statUi.UpdateStatText();
         dead = true;
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
