@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc42a3842d4ef144c97608bd03c4d245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCooldown: 20
+  minCooldown: 10
   maxCooldown: 160
   clips:
   - {fileID: 8300000, guid: 7faafb67023556d48b217002f973a610, type: 3}

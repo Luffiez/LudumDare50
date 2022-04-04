@@ -53,8 +53,6 @@ public class Shotgun : MonoBehaviour, IWeapon
         _OnAmmoChanged?.Invoke(ammoCount);
     }
 
-
-
     public void HoldShoot()
     {
         if (ShootTimer < Time.time)

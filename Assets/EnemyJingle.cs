@@ -39,7 +39,6 @@ public class EnemyJingle : MonoBehaviour
         if (clips.Length == 0)
             return;
 
-        Debug.Log("play");
         timer = 0;
         int id = Random.Range(0, clips.Length);
         AudioClip clip = clips[id];
