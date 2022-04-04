@@ -22,7 +22,7 @@ public class PowerUpRespawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (respawned)
+        if (respawned && other.CompareTag("Player"))
         {
             collider.enabled = false;
             renderer.enabled = false;
