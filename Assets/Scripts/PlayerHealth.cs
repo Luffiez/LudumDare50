@@ -1,3 +1,5 @@
+using StarterAssets;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -11,12 +13,14 @@ public class PlayerHealth : MonoBehaviour, IHurt
     [SerializeField]
     VolumeProfile profile;
     public HealthChangedEvent OnHealthChanged;
-    [SerializeField]
     StatTracker statTracker;
     bool dead = false;
     public bool Dead { get { return dead; } }
     public int MaxHealth { get => maxHealth; }
     public int CurrentHealth { get => currentHealth; }
+
+    [SerializeField] Behaviour[] disableOnDeath;
+  
 
     Vignette vignette;
 
@@ -32,22 +36,25 @@ public class PlayerHealth : MonoBehaviour, IHurt
         }
 
         vignette.intensity.value = 0;
+        statTracker = FindObjectOfType<StatTracker>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Start()
-    {
-        statTracker = FindObjectOfType<StatTracker>();
-    }
     public void NormalDamage(int damage)
     {
+        if (dead)
+            return;
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, currentHealth);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         statTracker.UpdateDamageTaken(damage);
         float heatlhPerc = 1 - (float)currentHealth / maxHealth;
-        vignette.intensity.value = 0.5f * heatlhPerc;
+        vignette.intensity.value = 0.6f * heatlhPerc;
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
@@ -57,9 +64,34 @@ public class PlayerHealth : MonoBehaviour, IHurt
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    private void Die()
+    IEnumerator Die(float duration = 0.5f)
     {
         dead = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = false;
+        };
+        float startRotation = transform.eulerAngles.z;
+        float endRotation = 70;
+        float t = 0.0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+
+            float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 70f;
+            Mathf.Clamp(zRotation, startRotation, endRotation);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+            yield return null;
+        }
+
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, endRotation);
+
+        yield return new WaitForSeconds(1f);
+
+        // Show stat and restart screen
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
