@@ -49,7 +49,10 @@ MonoBehaviour:
   shootTime: 2
   dynamitePrefab: {fileID: 6938622633848256677, guid: ebf47853747c707479ef20c50eb2a604, type: 3}
   upwardForce: 5
-  forwardForce: 10
+  forwardForce: 15
+  ammoCap: 4
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 7b38b1b758f207b48a4a78cd0b7b94fa, type: 3}
 --- !u!1 &322423164128133581
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +105,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 127
+  lightSrc: {fileID: 0}
+  ammoCap: 8
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: a764377339b869e459f5e53fb9258f73, type: 3}
 --- !u!1 &584733224550970502
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +156,10 @@ MonoBehaviour:
   HitPrefab: {fileID: 9086652730297972, guid: 606fd9e81c00e364fbc125c9ad7a7e0a, type: 3}
   animator: {fileID: 0}
   shootTime: 0.3
+  ammoCap: 20
+  lightSrc: {fileID: 0}
+  audioSrc: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 6739c01659ad96d47987f4ddee226b36, type: 3}
 --- !u!1 &980290986018598960
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +271,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5393215578589016642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -378,8 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 6
-  SprintSpeed: 6
+  MoveSpeed: 8
+  SprintSpeed: 8
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -566,4 +577,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b083d4a8a2e245459aaf5f4178977d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 20
+  profile: {fileID: 11400000, guid: fe05288aca2f31443877a786e771100f, type: 2}

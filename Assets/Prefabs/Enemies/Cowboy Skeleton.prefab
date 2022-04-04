@@ -287,13 +287,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8664811568053905843}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc42a3842d4ef144c97608bd03c4d245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCooldown: 1
-  maxCooldown: 5
+  minCooldown: 10
+  maxCooldown: 120
 --- !u!82 &1542252567224995201
 AudioSource:
   m_ObjectHideFlags: 0
@@ -301,12 +301,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8664811568053905843}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 26fbf6bb6963666478f6992bc53b9145, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.684
   m_Pitch: 1
   Loop: 0
   Mute: 0
