@@ -36,6 +36,9 @@ public class EnemyJingle : MonoBehaviour
 
     private void Jingle()
     {
+        if (clips.Length == 0)
+            return;
+
         Debug.Log("play");
         timer = 0;
         int id = Random.Range(0, clips.Length);
