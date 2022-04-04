@@ -4339,6 +4339,14 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.684
       objectReference: {fileID: 0}
+    - target: {fileID: 1542252567224995201, guid: 5b0e007ba73033944931eaed6aa2a80e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421297688321481055, guid: 5b0e007ba73033944931eaed6aa2a80e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5421297688321481055, guid: 5b0e007ba73033944931eaed6aa2a80e, type: 3}
       propertyPath: maxCooldown
       value: 120
@@ -93810,7 +93818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309956490829051906, guid: f7293b2a49c4a7543a0920a915441c23, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2309956490829051916, guid: f7293b2a49c4a7543a0920a915441c23, type: 3}
       propertyPath: m_RootOrder
