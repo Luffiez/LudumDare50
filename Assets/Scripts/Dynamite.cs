@@ -26,6 +26,12 @@ public class Dynamite : MonoBehaviour, IWeapon
 
     int ammoCount;
 
+    [SerializeField]
+    AudioSource audioSrc;
+
+    [SerializeField]
+    AudioClip attackClip;
+
     public int AmmoCount => ammoCount;
 
     public int AmmoCap => ammoCap;
@@ -54,6 +60,7 @@ public class Dynamite : MonoBehaviour, IWeapon
                 return;
             animator.Play("Shoot");
 
+            audioSrc.PlayOneShot(attackClip);
             ammoCount--;
             _OnAmmoChanged?.Invoke(ammoCount);
 

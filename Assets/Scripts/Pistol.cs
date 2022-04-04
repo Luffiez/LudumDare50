@@ -19,6 +19,13 @@ public class Pistol : MonoBehaviour, IWeapon
     [SerializeField]
     Light lightSrc;
 
+    [SerializeField]
+    AudioSource audioSrc;
+
+    [SerializeField]
+    AudioClip attackClip;
+
+
     int ammoCount;
 
     private void Awake()
@@ -44,6 +51,8 @@ public class Pistol : MonoBehaviour, IWeapon
 
             if (AmmoCount <= 0)
                 return;
+
+            audioSrc.PlayOneShot(attackClip);
 
             ammoCount--;
             _OnAmmoChanged?.Invoke(ammoCount);
