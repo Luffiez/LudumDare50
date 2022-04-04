@@ -4,6 +4,7 @@ public class EnemyHealth : MonoBehaviour, IHurt
 {
     [SerializeField] int maxHealth;
     [SerializeField] GameObject deathParticles;
+    [SerializeField] bool destroyParent = false;
     int currentHealth = 0;
 
     private void Awake()
@@ -30,6 +31,9 @@ public class EnemyHealth : MonoBehaviour, IHurt
         GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(particles, 2f);
 
-        Destroy(gameObject);
+        if (destroyParent)
+            Destroy(transform.parent.gameObject);
+        else
+            Destroy(gameObject);
     }
 }
