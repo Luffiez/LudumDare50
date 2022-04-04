@@ -42,6 +42,6 @@ public class StatUi : MonoBehaviour
         int seconds = (int)StatTracker.TimeSurvived -minutes*60;
         Time.text = "Time:" + minutes + ":" + seconds;
         wave.text = "Wave:" + StatTracker.Wave;
-        ammoPickedUpp.text="CollectedAmmo:" + StatTracker.AmmoCollected;
+        ammoPickedUpp.text="Ammo Collected:" + StatTracker.AmmoCollected;
     }
 }

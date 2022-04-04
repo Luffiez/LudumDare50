@@ -9915,7 +9915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  damageRadius: 5
+  damageRadius: 10
   lifeTime: 2
 --- !u!82 &-1915453492574402179
 AudioSource:

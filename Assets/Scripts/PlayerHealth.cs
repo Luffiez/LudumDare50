@@ -20,7 +20,8 @@ public class PlayerHealth : MonoBehaviour, IHurt
     public int CurrentHealth { get => currentHealth; }
 
     [SerializeField] Behaviour[] disableOnDeath;
-  
+    [SerializeField] GameObject gameoverUI;
+
 
     Vignette vignette;
 
@@ -95,6 +96,7 @@ public class PlayerHealth : MonoBehaviour, IHurt
         yield return new WaitForSeconds(1f);
 
         // Show stat and restart screen
+        gameoverUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

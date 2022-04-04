@@ -16,8 +16,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnInitialWave());
         statTracker = FindObjectOfType<StatTracker>();
+        StartCoroutine(SpawnInitialWave());
     }
 
     IEnumerator SpawnInitialWave()
