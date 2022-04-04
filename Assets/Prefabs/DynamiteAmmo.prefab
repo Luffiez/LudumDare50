@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3854161831834202142}
   - component: {fileID: 898736562405365674}
-  - component: {fileID: 2063184569660697765}
-  - component: {fileID: 2279784322936312090}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -26,12 +24,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3983096274917624264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6827629041101221729}
-  m_RootOrder: 2
+  m_Father: {fileID: 6827629040945306711}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &898736562405365674
 SpriteRenderer:
@@ -84,32 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2063184569660697765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983096274917624264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5893524ff93e9c74a9401e2662938665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2279784322936312090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983096274917624264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d91f74bee4b7194196ff3278c3b680f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 0.3
-  howerSpeed: 1.5
 --- !u!1 &6274618500536796121
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +294,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3854161831834202142}
   m_Father: {fileID: 6827629041101221729}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,7 +409,6 @@ Transform:
   m_Children:
   - {fileID: 6827629040945306711}
   - {fileID: 2350184178354979381}
-  - {fileID: 3854161831834202142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -454,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   ammoAmount: 2
+  pickupSound: {fileID: 8300000, guid: 9a358474be710184499c8ef18b3ca4f9, type: 3}
 --- !u!136 &6827629041101221731
 CapsuleCollider:
   m_ObjectHideFlags: 0
