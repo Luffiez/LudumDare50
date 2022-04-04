@@ -8,31 +8,44 @@ public class AmmoPack : MonoBehaviour
     enum WeaponType {pistol, shotgun, dynamite };
     [SerializeField]
     WeaponType weaponType;
+
     IWeapon weapon;
+
+    [SerializeField]
+    Shotgun shotgun;
+    [SerializeField]
+    Pistol pistol;
+    [SerializeField]
+    Dynamite dynamite;
+
+
     [SerializeField]
     int ammoAmount;
     StatTracker statTracker;
     AudioSource audioSource;
     [SerializeField]
     AudioClip pickupSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         statTracker = GameObject.FindObjectOfType<StatTracker>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //return;
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
         switch (weaponType)
         {
             case WeaponType.dynamite:
-                weapon =   player.GetComponentInChildren<Dynamite>() as IWeapon;
+                weapon = dynamite;
                 break;
 
             case WeaponType.pistol:
-                weapon = player.GetComponentInChildren<Pistol>() as IWeapon;
+                weapon = pistol;
                 break;
 
             case WeaponType.shotgun:
-                weapon = player.GetComponentInChildren<Shotgun>() as IWeapon;
+                weapon = shotgun;
                 break;
         }
     }

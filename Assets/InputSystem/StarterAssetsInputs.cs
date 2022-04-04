@@ -85,6 +85,11 @@ namespace StarterAssets
 		{
 		}
 
+		public void OnEscape(InputValue value)
+        {
+			Application.Quit();
+        }
+
 		public void OnHoldJumping(InputAction.CallbackContext obj)
 		{
 			holdjump = true;
