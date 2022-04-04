@@ -69,6 +69,11 @@ public class PlayerHealth : MonoBehaviour, IHurt
         dead = true;
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
+            if (disableOnDeath[i] is WeaponHandler handler)
+            {
+                handler.SetWeaponMovement(false);
+                yield return new WaitForEndOfFrame();
+            }
             disableOnDeath[i].enabled = false;
         };
         float startRotation = transform.eulerAngles.z;
