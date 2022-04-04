@@ -12,11 +12,12 @@ public class EnemySpawner : MonoBehaviour
     [Header("After Initial Levels")]
     [SerializeField] EnemyPool enemyPool = new EnemyPool();
     int waveCount = 0;
-
+    StatTracker statTracker;
 
     private void Start()
     {
         StartCoroutine(SpawnInitialWave());
+        statTracker = FindObjectOfType<StatTracker>();
     }
 
     IEnumerator SpawnInitialWave()
@@ -31,8 +32,11 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f / wave.spawnRate);
             }
             yield return new WaitForSeconds(1f / wave.waveCooldown);
+            waveCount++;
+            statTracker.UpdateWave();
+
         }
-        waveCount = enemyWaves.Length;
+       
         StartCoroutine(SpawnAfterWaves());
     }
 
@@ -52,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(enemyPool.waveCooldown);
             enemyPool.NewWave();
             waveCount++;
+            statTracker.UpdateWave();
             Debug.Log($"Wave {waveCount} spawned!");
         }
     }

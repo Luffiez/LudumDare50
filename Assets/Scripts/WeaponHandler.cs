@@ -34,10 +34,10 @@ public class WeaponHandler : MonoBehaviour
     }
 
 
-    void SwapWeapon(bool nextWeapon)
+    void SwapWeapon(float mouseDirection)
     {
         int newWeaponIndex = weaponIndex;
-        if (nextWeapon)
+        if (mouseDirection >0)
         {
             newWeaponIndex++;
             if(newWeaponIndex >= WeaponObjects.Count)
@@ -81,7 +81,7 @@ public class WeaponHandler : MonoBehaviour
     {
         if (input.mouseWheel != 0 && changeTimer < Time.time)
         {
-            SwapWeapon(input.newWeaponDirection >0);
+            SwapWeapon(input.mouseWheel);
             changeTimer = Time.time + changeTime;
         }
         else

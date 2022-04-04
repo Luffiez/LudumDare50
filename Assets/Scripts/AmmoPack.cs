@@ -10,9 +10,11 @@ public class AmmoPack : MonoBehaviour
     IWeapon weapon;
     [SerializeField]
     int ammoAmount;
+    StatTracker statTracker;
     // Start is called before the first frame update
     void Start()
     {
+        statTracker = GameObject.FindObjectOfType<StatTracker>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         switch (weaponType)
         {
@@ -34,6 +36,7 @@ public class AmmoPack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            statTracker.UpdateAmmoCollected(ammoAmount);
             weapon.AddAmmo(ammoAmount);
         }
     }
