@@ -23,6 +23,7 @@ public class StatTracker : MonoBehaviour
 
     public int Wave { get { return wave; } }
 
+    public float TimeSurvived { get { return timeSurvived; } }
 
     private void Start()
     {
